@@ -1,3 +1,3 @@
 AUTHKEY = "key";
 
-(loadstring or load)(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Luarion/main/auth.lua"))()
+(loadstring or load)(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Luarion/main/auth/main.lua"))()
