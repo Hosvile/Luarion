@@ -46,7 +46,7 @@ do
 	end
 end
 
-AUTHKEY = AUTHKEY or "Infinix_53d7bf7dab7643fddbd63cbffd028452078f5a1a762eec8bac2c0f3d0a1fde3c";
+AUTHKEY = AUTHKEY or "Infinix_53d7bf7dab7643fddbd63cbffd028452078f5a1a762eec8bac2c0f3d0a1fde3c_";
 
 LAL.Service = "infinix";
 LAL.HWID = nil;
@@ -63,14 +63,14 @@ if Status and pcall(function()
 	elseif Status == false then
 		warn("UNAUTHORIZED")
 	else
-		warn("UNAUTHORIZED & COMPROMISED [1]")
+		warn("UNAUTHORIZED & COMPROMISED [1]", Status)
 	end
 end) then
 	repeat
 		task.wait()
 	until not (StatusObject or not (#StatusObject == #StatusObject))
 
-	warn("UNAUTHORIZED & COMPROMISED [2]")
+	warn("UNAUTHORIZED & COMPROMISED [2]", Status)
 elseif Status ~= false then
-	warn("UNAUTHORIZED & COMPROMISED [3]")
+	warn("UNAUTHORIZED & COMPROMISED [3]", Status)
 end
