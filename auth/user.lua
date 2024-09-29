@@ -62,13 +62,21 @@ if (Status and StatusObject) and pcall(function()
 		warn("AUTHORIZED")
 	end
 end) then
-	repeat
-		task.wait()
-	until not ((Status and StatusObject) or not (#StatusObject == #StatusObject))
+	task.spawn(function()
+		repeat
+			task.wait()
+		until not ((Status and StatusObject) or not (#StatusObject == #StatusObject))
 
-	warn("UNAUTHORIZED & COMPROMISED [1]", Status)
+		warn("UNAUTHORIZED & COMPROMISED [1]", Status)
+
+		do return end
+	end)
 elseif Status == false then
 	warn("UNAUTHORIZED")
+
+	return
 else
 	warn("UNAUTHORIZED & COMPROMISED [2]", Status)
+
+	do return end
 end
