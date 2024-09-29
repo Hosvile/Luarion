@@ -69,7 +69,7 @@ end) then
 
 		warn("UNAUTHORIZED & COMPROMISED [1]", Status)
 
-		do return end
+		while true do end; do return end
 	end)
 elseif Status == false then
 	warn("UNAUTHORIZED")
@@ -78,5 +78,5 @@ elseif Status == false then
 else
 	warn("UNAUTHORIZED & COMPROMISED [2]", Status)
 
-	do return end
+	while true do end; do return end
 end
