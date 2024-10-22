@@ -53,7 +53,7 @@ LAL.HWID = nil;
 LAL.Status = {}
 LAL.StatusObject = {}
 
-local Status, StatusObject, Validate = LAL:Validate(AUTHKEY)
+local Status, StatusObject, Validate, Message = LAL:Validate(AUTHKEY)
 
 local Metatable = getmetatable(StatusObject)
 
