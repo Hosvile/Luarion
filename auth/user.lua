@@ -54,6 +54,8 @@ LAL.HWID = nil; -- CHANGE IF YOU WANT TO USE A DIFFERENT HWID
 LAL.Status = {} -- CONSTANT DO NOT CHANGE
 LAL.StatusObject = {} -- CONSTANT DO NOT CHANGE
 
+-- setclipboard( LAL:GetKey() ) -- GET KEY URL
+
 local Status, StatusObject, Validate, Message = LAL:Validate(AUTHKEY)
 
 local Metatable = getmetatable(StatusObject) -- REQUIRED FOR THE IF STATEMENT
