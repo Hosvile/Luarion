@@ -65,21 +65,31 @@ if (Status and StatusObject) and pcall(function()
 		warn("USER IS", Status["Premium"] and "" or "NOT", "PREMIUM")
 	end
 end) then
+	local Ran = nil
+
 	task.spawn(function()
+		Ran = true
+
 		repeat
 			task.wait()
 		until not ((Status and StatusObject) or not (#StatusObject == #StatusObject))
 
-		-- warn("UNAUTHORIZED & COMPROMISED [1]", Status)
+		warn("UNAUTHORIZED & COMPROMISED [1]", Status)
 
 		while true do end; do return end
 	end)
+	
+	if not Ran then
+		warn("UNAUTHORIZED & COMPROMISED [3]", Status)
+
+		while true do end; do return end
+	end
 elseif Status == false then
 	warn("UNAUTHORIZED")
 
 	return
 else
-	-- warn("UNAUTHORIZED & COMPROMISED [2]", Status)
+	warn("UNAUTHORIZED & COMPROMISED [2]", Status)
 
 	while true do end; do return end
 end
