@@ -1,6 +1,4 @@
 
-local ReleaseInfo = nil
-
 local LAL = nil
 
 do
@@ -49,6 +47,7 @@ end
 
 AUTHKEY = AUTHKEY or false and "Infinix_6892c082e64ef755b5255d7c5afc126eb35474167b317f2d2fdd49b86f068a1d" or "Infinix_53d7bf7dab7643fddbd63cbffd028452078f5a1a762eec8bac2c0f3d0a1fde3c";
 
+LAL.ConsoleLog = true; -- SET TO FALSE TO GET RID OF LOGS
 LAL.Service = "infinix"; -- YOUR SERVICE IDENTIFIER
 LAL.HWID = nil; -- CHANGE IF YOU WANT TO USE A DIFFERENT HWID
 LAL.Status = {} -- CONSTANT DO NOT CHANGE
