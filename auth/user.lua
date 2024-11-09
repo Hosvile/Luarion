@@ -19,7 +19,7 @@ do
 
 		local success, result = pcall(readfile, VersionDirectory)
 		
-		if true or not (success and tostring(ReleaseInfo.assets[1].updated_at) == result) then
+		if not (success and tostring(ReleaseInfo.assets[1].updated_at) == result) then
 			warn("LOADED FRESH VASL.")
 
 			local Source = game:HttpGet("https://github.com/Hosvile/Luarion/releases/latest/download/release.lua", false)
