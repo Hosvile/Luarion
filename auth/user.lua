@@ -1,6 +1,8 @@
 local LAL = nil
 
 do
+	local ReleaseInfo = nil
+
 	local VersionDirectory = "VASL-Version.lua"
 	local SourceDirectory = "VASL.lua"
 
@@ -12,39 +14,47 @@ do
 
 	local HttpService = service.HttpService
 
-	local success, ReleaseInfo = pcall(HttpService.JSONDecode, HttpService, game:HttpGet("https://api.github.com/repos/Hosvile/Luarion/releases", false))
+	local success, ReleaseInfo = pcall(function()
+		return game["HttpGet"](game, "https://api.github.com/repos/Hosvile/Luarion/releases", false)
+	end)
 
 	if success and ReleaseInfo and readfile and writefile then
-		ReleaseInfo = ReleaseInfo[1]
-
-		local success, result = pcall(readfile, VersionDirectory)
+		success, ReleaseInfo = pcall(HttpService.JSONDecode, HttpService, ReleaseInfo)
 		
-		if not (success and tostring(ReleaseInfo.assets[1].updated_at) == result) then
-			warn("LOADED FRESH VASL.")
-
-			local Source = game:HttpGet("https://github.com/Hosvile/Luarion/releases/latest/download/release.lua", false)
-
-			LAL = (loadstring or load)(Source, "VASL")(...)(...)
-
-			writefile(VersionDirectory, tostring(ReleaseInfo.assets[1].updated_at))
-			writefile(SourceDirectory, tostring(Source))
-		else
-			local success, result = pcall(readfile, SourceDirectory)
-
-			if success and result then
-				warn("LOADED CACHE VASL.")
-
-				LAL = (loadstring or load)(result, "VASL")(...)(...)
+		if success and ReleaseInfo then
+			ReleaseInfo = ReleaseInfo[1]
+	
+			local success, result = pcall(readfile, VersionDirectory)
+			
+			if not (success and tostring(ReleaseInfo.assets[1].updated_at) == result) then
+				warn("LOADED FRESH VASL.")
+	
+				local Source = game:HttpGet("https://github.com/Hosvile/Luarion/releases/latest/download/release.lua", false)
+	
+				LAL = (loadstring or load)(Source, "VASL")(...)(...)
+	
+				writefile(VersionDirectory, tostring(ReleaseInfo.assets[1].updated_at))
+				writefile(SourceDirectory, tostring(Source))
+			else
+				local success, result = pcall(readfile, SourceDirectory)
+	
+				if success and result then
+					warn("LOADED CACHE VASL.")
+	
+					LAL = (loadstring or load)(result, "VASL")(...)(...)
+				end
 			end
 		end
 	end
 
 	if not LAL then
+		warn("LOADED FAILSAFE VASL.")
+		
 		LAL = (loadstring or load)(game:HttpGet("https://github.com/Hosvile/Luarion/releases/latest/download/release.lua", false), "VASL")(...)(...)
 	end
 end
 
-AUTHKEY = AUTHKEY or "Infinix_483dbd656ce5a3094bdc809c8cedc3baed97f298218c327d337e73baa9708417";
+AUTHKEY = AUTHKEY or "Infinix_key";
 
 LAL.ConsoleLog = true; -- SET TO FALSE TO GET RID OF LOGS
 LAL.Service = "infinix"; -- YOUR SERVICE IDENTIFIER
